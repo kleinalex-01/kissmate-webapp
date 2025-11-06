@@ -1,0 +1,114 @@
+// ==========================================================================
+// FUNCTIONS
+// ==========================================================================
+
+// COLOR FUNCTIONS
+// ==========================================================================
+@function get-color($color-map, $color-name) {
+  @if map-has-key($color-map, $color-name) {
+    @return map-get($color-map, $color-name);
+  } @else {
+    @warn "Color `#{$color-name}` not found in color map. Available colors: #{map-keys($color-map)}";
+    @return null;
+  }
+}
+
+@function light-color($color-name) {
+  @return get-color($light-colors, $color-name);
+}
+
+@function dark-color($color-name) {
+  @return get-color($dark-colors, $color-name);
+}
+
+// SPACING FUNCTIONS
+// ==========================================================================
+@function spacing($multiplier) {
+  @if map-has-key($spacers, $multiplier) {
+    @return map-get($spacers, $multiplier);
+  } @else {
+    @warn "Spacing value `#{$multiplier}` not found. Available values: #{map-keys($spacers)}";
+    @return null;
+  }
+}
+
+// FONT FUNCTIONS
+// ==========================================================================
+@function font-size($size-name) {
+  @if map-has-key($font-sizes, $size-name) {
+    @return map-get($font-sizes, $size-name);
+  } @else {
+    @warn "Font size `#{$size-name}` not found. Available sizes: #{map-keys($font-sizes)}";
+    @return null;
+  }
+}
+
+@function font-weight($weight-name) {
+  @if map-has-key($font-weights, $weight-name) {
+    @return map-get($font-weights, $weight-name);
+  } @else {
+    @warn "Font weight `#{$weight-name}` not found. Available weights: #{map-keys($font-weights)}";
+    @return null;
+  }
+}
+
+// BORDER RADIUS FUNCTIONS
+// ==========================================================================
+@function border-radius($radius-name) {
+  @if map-has-key($border-radius, $radius-name) {
+    @return map-get($border-radius, $radius-name);
+  } @else {
+    @warn "Border radius `#{$radius-name}` not found. Available radii: #{map-keys($border-radius)}";
+    @return null;
+  }
+}
+
+// SHADOW FUNCTIONS
+// ==========================================================================
+@function shadow($shadow-name) {
+  @if map-has-key($shadows, $shadow-name) {
+    @return map-get($shadows, $shadow-name);
+  } @else {
+    @warn "Shadow `#{$shadow-name}` not found. Available shadows: #{map-keys($shadows)}";
+    @return null;
+  }
+}
+
+// Z-INDEX FUNCTIONS
+// ==========================================================================
+@function z-index($layer-name) {
+  @if map-has-key($z-index, $layer-name) {
+    @return map-get($z-index, $layer-name);
+  } @else {
+    @warn "Z-index layer `#{$layer-name}` not found. Available layers: #{map-keys($z-index)}";
+    @return null;
+  }
+}
+
+// UTILITY FUNCTIONS
+// ==========================================================================
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+@function rem($pixels, $context: 16) {
+  @return #{strip-unit($pixels) / strip-unit($context)}rem;
+}
+
+@function em($pixels, $context: 16) {
+  @return #{strip-unit($pixels) / strip-unit($context)}em;
+}
+
+// CONTAINER FUNCTIONS
+// ==========================================================================
+@function container-max-width($breakpoint) {
+  @if map-has-key($container-max-widths, $breakpoint) {
+    @return map-get($container-max-widths, $breakpoint);
+  } @else {
+    @warn "Container max-width for `#{$breakpoint}` not found. Available breakpoints: #{map-keys($container-max-widths)}";
+    @return null;
+  }
+}

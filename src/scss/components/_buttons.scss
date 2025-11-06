@@ -1,0 +1,140 @@
+// ==========================================================================
+// BUTTONS
+// ==========================================================================
+
+// BASE BUTTON
+// ==========================================================================
+.btn {
+  @include button-base;
+  
+  // Default size
+  @include button-size(3, 6, 'base');
+  
+  // Variants
+  &--primary {
+    @include button-variant(var(--primary-600), var(--neutral-0), var(--primary-700));
+  }
+  
+  &--secondary {
+    @include button-variant(transparent, var(--primary-600), var(--primary-50), var(--primary-700));
+    border: 2px solid var(--primary-600);
+    
+    &:hover:not(:disabled) {
+      border-color: var(--primary-700);
+    }
+  }
+  
+  &--outline {
+    @include button-variant(transparent, var(--neutral-600), var(--neutral-100), var(--neutral-700));
+    border: 1px solid var(--border-color);
+  }
+  
+  &--ghost {
+    @include button-variant(transparent, var(--neutral-600), var(--neutral-100));
+  }
+  
+  &--success {
+    @include button-variant(var(--success), var(--neutral-0), var(--success-dark));
+  }
+  
+  &--warning {
+    @include button-variant(var(--warning), var(--neutral-0), var(--warning-dark));
+  }
+  
+  &--error {
+    @include button-variant(var(--error), var(--neutral-0), var(--error-dark));
+  }
+  
+  // Sizes
+  &--sm {
+    @include button-size(2, 4, 'sm');
+  }
+  
+  &--lg {
+    @include button-size(4, 8, 'lg');
+  }
+  
+  &--xl {
+    @include button-size(5, 10, 'xl');
+  }
+  
+  // Full width
+  &--block {
+    width: 100%;
+  }
+  
+  // Icon buttons
+  &--icon {
+    @include size(spacing(10));
+    @include button-size(2, 2, 'base');
+    
+    &.btn--sm {
+      @include size(spacing(8));
+    }
+    
+    &.btn--lg {
+      @include size(spacing(12));
+    }
+  }
+  
+  // Loading state
+  &--loading {
+    position: relative;
+    color: transparent !important;
+    
+    &::after {
+      content: '';
+      @include center-absolute;
+      @include size(1em);
+      border: 2px solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: btn-spin 0.8s linear infinite;
+    }
+  }
+  
+  // Disabled state
+  &:disabled,
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// BUTTON GROUP
+// ==========================================================================
+.btn-group {
+  @include flex($align: stretch);
+  
+  .btn {
+    border-radius: 0;
+    
+    &:first-child {
+      border-top-left-radius: border-radius('md');
+      border-bottom-left-radius: border-radius('md');
+    }
+    
+    &:last-child {
+      border-top-right-radius: border-radius('md');
+      border-bottom-right-radius: border-radius('md');
+    }
+    
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+    
+    &:hover,
+    &:focus {
+      z-index: 1;
+    }
+  }
+}
+
+// ANIMATIONS
+// ==========================================================================
+@keyframes btn-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

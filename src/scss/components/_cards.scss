@@ -1,0 +1,191 @@
+// ==========================================================================
+// CARDS
+// ==========================================================================
+
+// BASE CARD
+// ==========================================================================
+.card {
+  @include card;
+  
+  &--hover {
+    @include card-hover;
+  }
+  
+  &--flat {
+    box-shadow: none;
+    border: 1px solid var(--border-color);
+  }
+  
+  &--elevated {
+    box-shadow: shadow('lg');
+  }
+  
+  // Card header
+  &__header {
+    @include padding(6, 6, 0, 6);
+    border-bottom: 1px solid var(--border-muted);
+    margin-bottom: spacing(6);
+    
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      @include padding(6, 6, 6, 6);
+    }
+  }
+  
+  // Card body
+  &__body {
+    @include padding(0, 6, 6, 6);
+    
+    &:first-child {
+      @include padding(6, 6, 6, 6);
+    }
+  }
+  
+  // Card footer
+  &__footer {
+    @include padding(0, 6, 6, 6);
+    border-top: 1px solid var(--border-muted);
+    margin-top: spacing(6);
+    @include padding(6, 6, 6, 6);
+    background-color: var(--bg-muted);
+    border-radius: 0 0 border-radius('lg') border-radius('lg');
+    margin: spacing(6) calc(-1 * #{spacing(6)}) calc(-1 * #{spacing(6)});
+  }
+  
+  // Card title
+  &__title {
+    margin: 0 0 spacing(2) 0;
+    @include font-size('xl');
+    @include font-weight('semibold');
+    color: var(--text-primary);
+  }
+  
+  // Card subtitle
+  &__subtitle {
+    margin: 0 0 spacing(4) 0;
+    @include font-size('sm');
+    color: var(--text-muted);
+  }
+  
+  // Card text
+  &__text {
+    margin-bottom: spacing(4);
+    color: var(--text-secondary);
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// CARD VARIANTS
+// ==========================================================================
+.card {
+  &--primary {
+    border-color: var(--primary-200);
+    
+    .card__header {
+      background-color: var(--primary-50);
+      border-bottom-color: var(--primary-200);
+    }
+  }
+  
+  &--success {
+    border-color: var(--success-light);
+    
+    .card__header {
+      background-color: var(--success-light);
+      border-bottom-color: var(--success);
+    }
+  }
+  
+  &--warning {
+    border-color: var(--warning-light);
+    
+    .card__header {
+      background-color: var(--warning-light);
+      border-bottom-color: var(--warning);
+    }
+  }
+  
+  &--error {
+    border-color: var(--error-light);
+    
+    .card__header {
+      background-color: var(--error-light);
+      border-bottom-color: var(--error);
+    }
+  }
+}
+
+// CARD GRID
+// ==========================================================================
+.card-grid {
+  @include grid-responsive(1, 2, 3);
+  
+  &--2-col {
+    @include grid-responsive(1, 2, 2);
+  }
+  
+  &--4-col {
+    @include grid-responsive(1, 2, 4);
+  }
+}
+
+// PRICING CARD
+// ==========================================================================
+.pricing-card {
+  @extend .card;
+  @include card-hover;
+  text-align: center;
+  position: relative;
+  
+  &--featured {
+    border: 2px solid var(--primary-500);
+    transform: scale(1.05);
+    
+    &::before {
+      content: 'Most Popular';
+      @include absolute($top: -12px, $left: 50%);
+      transform: translateX(-50%);
+      background-color: var(--primary-500);
+      color: var(--neutral-0);
+      padding: spacing(1) spacing(4);
+      border-radius: border-radius('full');
+      @include font-size('sm');
+      @include font-weight('medium');
+    }
+  }
+  
+  &__price {
+    @include font-size('4xl');
+    @include font-weight('bold');
+    color: var(--primary-600);
+    margin: spacing(4) 0;
+  }
+  
+  &__duration {
+    color: var(--text-muted);
+    @include font-size('sm');
+    margin-bottom: spacing(6);
+  }
+  
+  &__features {
+    list-style: none;
+    padding: 0;
+    margin: spacing(6) 0;
+    
+    li {
+      @include flex($align: center);
+      @include padding(2, 0, 2, 0);
+      
+      &::before {
+        content: '✓';
+        color: var(--success);
+        @include font-weight('bold');
+        margin-right: spacing(3);
+      }
+    }
+  }
+}

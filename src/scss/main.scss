@@ -1,0 +1,41 @@
+// ==========================================================================
+// MAIN SASS FILE - KISSMATE SPA
+// ==========================================================================
+// Following SASS 7-1 Architecture Pattern
+// https://sass-guidelin.es/#the-7-1-pattern
+
+// 1. ABSTRACTS
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+// 2. VENDORS
+@import 'vendors/normalize';
+
+// 3. BASE
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/base';
+
+// 4. LAYOUT
+@import 'layout/footer';
+@import 'layout/navigation';
+@import 'layout/grid';
+@import 'layout/forms';
+
+// 5. COMPONENTS
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/modals';
+@import 'components/carousel';
+@import 'components/theme-toggle';
+
+// 6. PAGES
+@import 'pages/home';
+@import 'pages/services';
+@import 'pages/prices';
+@import 'pages/contact';
+
+// 7. THEMES
+@import 'themes/default';
+@import 'themes/dark';

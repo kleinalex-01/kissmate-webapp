@@ -1,0 +1,43 @@
+// ==========================================================================
+// FORMS
+// ==========================================================================
+
+.form {
+  &__group {
+    margin-bottom: spacing(6);
+  }
+  
+  &__label {
+    display: block;
+    margin-bottom: spacing(2);
+    @include font-weight('medium');
+    color: var(--text-primary);
+  }
+  
+  &__input {
+    @include input-base;
+  }
+  
+  &__textarea {
+    @include input-base;
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  &__select {
+    @include input-base;
+    cursor: pointer;
+  }
+  
+  &__error {
+    margin-top: spacing(1);
+    @include font-size('sm');
+    color: var(--error);
+  }
+  
+  &__help {
+    margin-top: spacing(1);
+    @include font-size('sm');
+    color: var(--text-muted);
+  }
+}

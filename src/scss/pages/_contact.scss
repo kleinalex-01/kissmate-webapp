@@ -1,0 +1,70 @@
+// ==========================================================================
+// CONTACT PAGE
+// ==========================================================================
+
+.contact {
+  @include padding(8, 0, 16, 0);
+  
+  &__header {
+    text-align: center;
+    margin-bottom: spacing(12);
+  }
+  
+  &__title {
+    @include font-size('4xl');
+    @include font-weight('bold');
+    margin-bottom: spacing(4);
+  }
+  
+  &__grid {
+    @include grid-responsive(1, 1, 2);
+    gap: spacing(12);
+  }
+  
+  &__info {
+    &-title {
+      @include font-size('2xl');
+      @include font-weight('semibold');
+      margin-bottom: spacing(6);
+    }
+    
+    &-item {
+      @include flex($align: flex-start);
+      margin-bottom: spacing(6);
+      
+      &-icon {
+        @include flex-center;
+        @include size(48px);
+        background-color: var(--primary-100);
+        color: var(--primary-600);
+        border-radius: border-radius('lg');
+        margin-right: spacing(4);
+        @include font-size('xl');
+        flex-shrink: 0;
+      }
+      
+      &-content {
+        h3 {
+          @include font-weight('semibold');
+          margin-bottom: spacing(1);
+        }
+        
+        p {
+          color: var(--text-secondary);
+          margin: 0;
+          @include line-height('relaxed');
+        }
+      }
+    }
+  }
+  
+  &__form {
+    @include card;
+    
+    &-title {
+      @include font-size('2xl');
+      @include font-weight('semibold');
+      margin-bottom: spacing(6);
+    }
+  }
+}

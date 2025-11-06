@@ -1,0 +1,186 @@
+// ==========================================================================
+// FOOTER
+// ==========================================================================
+
+.footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  margin-top: auto;
+  
+  &__main {
+    @extend .container;
+    @include padding(16, 0, 8, 0);
+  }
+  
+  &__grid {
+    @include grid-responsive(1, 2, 3);
+    margin-bottom: spacing(8);
+  }
+  
+  &__section {
+    margin-bottom: spacing(8);
+    
+    @include respond-to('tablet') {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__title {
+    @include font-size('lg');
+    @include font-weight('semibold');
+    margin-bottom: spacing(4);
+    color: var(--neutral-100);
+  }
+  
+  &__text {
+    color: var(--neutral-300);
+    @include line-height('relaxed');
+    margin-bottom: spacing(4);
+  }
+  
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  &__list-item {
+    margin-bottom: spacing(2);
+  }
+  
+  &__link {
+    color: var(--neutral-300);
+    text-decoration: none;
+    transition: map-get($transitions, 'colors');
+    
+    &:hover {
+      color: var(--neutral-100);
+    }
+  }
+  
+  &__contact-item {
+    @include flex($align: center);
+    margin-bottom: spacing(3);
+    
+    &-icon {
+      margin-right: spacing(3);
+      @include font-size('lg');
+    }
+  }
+  
+  &__social {
+    @include flex($align: center);
+    list-style: none;
+    padding: 0;
+    margin: spacing(4) 0 0 0;
+  }
+  
+  &__social-item {
+    margin-right: spacing(4);
+  }
+  
+  &__social-link {
+    @include flex-center;
+    @include size(44px);
+    background-color: var(--neutral-800);
+    color: var(--neutral-300);
+    text-decoration: none;
+    border-radius: border-radius('md');
+    transition: map-get($transitions, 'all');
+    
+    &:hover {
+      background-color: var(--primary-600);
+      color: var(--neutral-0);
+      transform: translateY(-2px);
+    }
+  }
+  
+  &__bottom {
+    border-top: 1px solid var(--neutral-700);
+    @include padding(6, 0, 6, 0);
+    
+    &-container {
+      @extend .container;
+      @include flex-between;
+      @include flex-column;
+      
+      @include respond-to('tablet') {
+        flex-direction: row;
+      }
+    }
+  }
+  
+  &__copyright {
+    color: var(--neutral-400);
+    @include font-size('sm');
+    margin-bottom: spacing(4);
+    
+    @include respond-to('tablet') {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__bottom-links {
+    @include flex($align: center);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  &__bottom-link {
+    color: var(--neutral-400);
+    text-decoration: none;
+    @include font-size('sm');
+    margin-left: spacing(6);
+    transition: map-get($transitions, 'colors');
+    
+    &:first-child {
+      margin-left: 0;
+    }
+    
+    &:hover {
+      color: var(--neutral-200);
+    }
+  }
+}
+
+// NEWSLETTER SIGNUP
+// ==========================================================================
+.newsletter {
+  &__form {
+    @include flex($direction: column);
+    
+    @include respond-to('mobile-l') {
+      flex-direction: row;
+    }
+  }
+  
+  &__input {
+    @include input-base;
+    background-color: var(--neutral-800);
+    border-color: var(--neutral-600);
+    color: var(--neutral-100);
+    margin-bottom: spacing(3);
+    
+    @include respond-to('mobile-l') {
+      margin-bottom: 0;
+      margin-right: spacing(3);
+      flex: 1;
+    }
+    
+    &::placeholder {
+      color: var(--neutral-500);
+    }
+    
+    &:focus {
+      border-color: var(--primary-400);
+      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+    }
+  }
+  
+  &__button {
+    @extend .btn;
+    @extend .btn--primary;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,186 @@
+// ==========================================================================
+// TYPOGRAPHY
+// ==========================================================================
+
+// HEADINGS
+// ==========================================================================
+h1 {
+  @include font-size('5xl');
+  @include line-height('tight');
+  
+  @include respond-to('tablet') {
+    @include font-size('6xl');
+  }
+  
+  @include respond-to('laptop') {
+    @include font-size('7xl');
+  }
+}
+
+h2 {
+  @include font-size('3xl');
+  @include line-height('tight');
+  
+  @include respond-to('tablet') {
+    @include font-size('4xl');
+  }
+  
+  @include respond-to('laptop') {
+    @include font-size('5xl');
+  }
+}
+
+h3 {
+  @include font-size('2xl');
+  @include line-height('tight');
+  
+  @include respond-to('tablet') {
+    @include font-size('3xl');
+  }
+}
+
+h4 {
+  @include font-size('xl');
+  @include line-height('tight');
+  
+  @include respond-to('tablet') {
+    @include font-size('2xl');
+  }
+}
+
+h5 {
+  @include font-size('lg');
+  @include line-height('tight');
+  
+  @include respond-to('tablet') {
+    @include font-size('xl');
+  }
+}
+
+h6 {
+  @include font-size('base');
+  @include line-height('tight');
+  
+  @include respond-to('tablet') {
+    @include font-size('lg');
+  }
+}
+
+// BODY TEXT
+// ==========================================================================
+.text-lead {
+  @include font-size('xl');
+  @include line-height('relaxed');
+  color: var(--text-secondary);
+}
+
+.text-body {
+  @include font-size('base');
+  @include line-height('normal');
+}
+
+.text-small {
+  @include font-size('sm');
+  @include line-height('normal');
+}
+
+.text-xs {
+  @include font-size('xs');
+  @include line-height('normal');
+}
+
+// TEXT UTILITIES
+// ==========================================================================
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+.text-uppercase { text-transform: uppercase; }
+.text-lowercase { text-transform: lowercase; }
+.text-capitalize { text-transform: capitalize; }
+
+.text-decoration-none { text-decoration: none; }
+.text-decoration-underline { text-decoration: underline; }
+
+.font-thin { @include font-weight('thin'); }
+.font-extralight { @include font-weight('extralight'); }
+.font-light { @include font-weight('light'); }
+.font-normal { @include font-weight('normal'); }
+.font-medium { @include font-weight('medium'); }
+.font-semibold { @include font-weight('semibold'); }
+.font-bold { @include font-weight('bold'); }
+.font-extrabold { @include font-weight('extrabold'); }
+.font-black { @include font-weight('black'); }
+
+.line-height-none { @include line-height('none'); }
+.line-height-tight { @include line-height('tight'); }
+.line-height-snug { @include line-height('snug'); }
+.line-height-normal { @include line-height('normal'); }
+.line-height-relaxed { @include line-height('relaxed'); }
+.line-height-loose { @include line-height('loose'); }
+
+// TEXT COLORS
+// ==========================================================================
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-inverse { color: var(--text-inverse); }
+
+.text-brand-primary { color: var(--primary-600); }
+.text-brand-secondary { color: var(--primary-500); }
+
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-error { color: var(--error); }
+.text-info { color: var(--info); }
+
+// RESPONSIVE TEXT SIZES
+// ==========================================================================
+.text-responsive-xs {
+  @include font-size('xs');
+  
+  @include respond-to('tablet') {
+    @include font-size('sm');
+  }
+}
+
+.text-responsive-sm {
+  @include font-size('sm');
+  
+  @include respond-to('tablet') {
+    @include font-size('base');
+  }
+}
+
+.text-responsive-base {
+  @include font-size('base');
+  
+  @include respond-to('tablet') {
+    @include font-size('lg');
+  }
+}
+
+.text-responsive-lg {
+  @include font-size('lg');
+  
+  @include respond-to('tablet') {
+    @include font-size('xl');
+  }
+  
+  @include respond-to('laptop') {
+    @include font-size('2xl');
+  }
+}
+
+.text-responsive-xl {
+  @include font-size('xl');
+  
+  @include respond-to('tablet') {
+    @include font-size('2xl');
+  }
+  
+  @include respond-to('laptop') {
+    @include font-size('3xl');
+  }
+}

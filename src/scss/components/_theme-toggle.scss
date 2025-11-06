@@ -1,0 +1,30 @@
+// ==========================================================================
+// THEME TOGGLE
+// ==========================================================================
+
+.theme-toggle {
+  @include button-base;
+  @include size(44px);
+  background-color: var(--bg-muted);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: border-radius('lg');
+  
+  &:hover {
+    background-color: var(--primary-50);
+    color: var(--primary-600);
+    border-color: var(--primary-200);
+  }
+  
+  &:focus {
+    @include focus-ring(var(--primary-500));
+  }
+  
+  svg {
+    transition: map-get($transitions, 'transform');
+  }
+  
+  &:hover svg {
+    transform: rotate(15deg);
+  }
+}

@@ -1,0 +1,178 @@
+// ==========================================================================
+// BASE
+// ==========================================================================
+
+// SELECTION
+// ==========================================================================
+::selection {
+  background-color: var(--primary-100);
+  color: var(--primary-900);
+}
+
+// FOCUS STATES
+// ==========================================================================
+:focus-visible {
+  outline: 2px solid var(--primary-600);
+  outline-offset: 2px;
+}
+
+// SCROLLBAR STYLING
+// ==========================================================================
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--neutral-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--neutral-400);
+  border-radius: border-radius('full');
+  
+  &:hover {
+    background-color: var(--neutral-500);
+  }
+}
+
+// ROOT DOCUMENT
+// ==========================================================================
+html {
+  scroll-behavior: smooth;
+  
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+// IMAGES & MEDIA
+// ==========================================================================
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+svg {
+  max-width: 100%;
+  height: auto;
+  fill: currentColor;
+}
+
+// CONTAINER
+// ==========================================================================
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: spacing(4);
+  padding-right: spacing(4);
+  
+  @include respond-to('mobile-l') {
+    max-width: container-max-width('sm');
+  }
+  
+  @include respond-to('tablet') {
+    max-width: container-max-width('md');
+  }
+  
+  @include respond-to('laptop') {
+    max-width: container-max-width('lg');
+  }
+  
+  @include respond-to('laptop-l') {
+    max-width: container-max-width('xl');
+  }
+  
+  @include respond-to('desktop') {
+    max-width: container-max-width('xxl');
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding-left: spacing(4);
+  padding-right: spacing(4);
+}
+
+// SKIP LINKS
+// ==========================================================================
+.skip-link {
+  @include visually-hidden;
+  
+  &:focus {
+    position: fixed;
+    top: spacing(4);
+    left: spacing(4);
+    z-index: z-index('skipLink');
+    padding: spacing(3) spacing(6);
+    background-color: var(--primary-600);
+    color: var(--neutral-0);
+    text-decoration: none;
+    border-radius: border-radius('md');
+    box-shadow: shadow('lg');
+    @include font-weight('medium');
+  }
+}
+
+// SCREEN READER ONLY
+// ==========================================================================
+.sr-only {
+  @include visually-hidden;
+}
+
+// PRINT STYLES
+// ==========================================================================
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a:not(.btn) {
+    text-decoration: underline;
+  }
+  
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+  
+  pre {
+    white-space: pre-wrap !important;
+  }
+  
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
