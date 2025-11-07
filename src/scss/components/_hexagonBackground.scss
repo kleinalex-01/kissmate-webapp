@@ -1,0 +1,29 @@
+.hex-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none; // keep UI clickable
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.hex-bg--absolute {
+  position: absolute;
+  pointer-events: none;
+}
+
+.hex-bg--fixed {
+  position: fixed;
+}
+
+.hex-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate3d(0,0,0);
+}
+
+.hex-glow {
+  display: none; // Removed for minimal & clean design
+}

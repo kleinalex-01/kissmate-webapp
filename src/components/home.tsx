@@ -1,89 +1,38 @@
-import { Link } from 'react-router-dom'
-import { FaHome, FaHandSparkles, FaMoneyBillWave, FaEnvelope } from 'react-icons/fa'
-import { useState, useEffect, useMemo } from 'react'
+import { HexagonBackground } from "./HexagonBackground";
+import { FaPhone, FaEnvelope } from "react-icons/fa";
 
 const Home = () => {
-    const titles = useMemo(() => ["Masszőr", "Sportmasszőr"], [])
-    const [currentTitleIndex, setCurrentTitleIndex] = useState(0)
-    const [displayText, setDisplayText] = useState("")
-    const [isDeleting, setIsDeleting] = useState(false)
-    const [typingSpeed, setTypingSpeed] = useState(150)
-
-    useEffect(() => {
-        const currentTitle = titles[currentTitleIndex]
-        
-        const handleTyping = () => {
-            if (!isDeleting) {
-                // Typing
-                if (displayText.length < currentTitle.length) {
-                    setDisplayText(currentTitle.substring(0, displayText.length + 1))
-                    setTypingSpeed(150)
-                } else {
-                    // Pause before deleting
-                    setTimeout(() => setIsDeleting(true), 2000)
-                }
-            } else {
-                // Deleting
-                if (displayText.length > 0) {
-                    setDisplayText(currentTitle.substring(0, displayText.length - 1))
-                    setTypingSpeed(100)
-                } else {
-                    setIsDeleting(false)
-                    setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % titles.length)
-                }
-            }
-        }
-
-        const timer = setTimeout(handleTyping, typingSpeed)
-        return () => clearTimeout(timer)
-    }, [displayText, isDeleting, currentTitleIndex, titles, typingSpeed])
-
     return (
         <>
         <div className="home__container">
             <div className="home__section1">
-                {/* Hero header */}
-                <div className="home__header">
-                    {/* Left side: Image and Name */}
-                    <div className="home__header-left">
-                        <img 
-                            src="/pictures/kissmate-profilkep.JPG" 
-                            alt="Kiss Máté" 
-                            className="home__header-image"
-                        />
-                        <div className="home__header-name-container">
-                            <h1 className="home__header-name">
-                                Kiss Máté
-                                <span className="home__header-title-separator"> - </span>
-                                <span className="home__header-typewriter-title">
-                                    {displayText}
-                                    <span className="home__header-typewriter-cursor">|</span>
-                                </span>
-                            </h1>
+                <HexagonBackground fixed={false} />
+                
+                {/* Hero Content */}
+                <div className="home__hero">
+                    <div className="home__hero-content">
+                        <p className="home__hero-greeting">Üdvözlöm!</p>
+                        <h1 className="home__hero-title">
+                            <span className="home__hero-title-main">Kiss Máté</span>
+                            <span className="home__hero-title-sub">Masszázsterapeuta</span>
+                        </h1>
+                        <p className="home__hero-description">
+                            Professzionális masszázskezelések a testi és lelki harmónia érdekében. 
+                            Tapasztalt szakemberként segítek a feszültség oldásában és az egészség megőrzésében.
+                        </p>
+                        <div className="home__hero-cta">
+                            <a href="tel:+36301234567" className="home__hero-btn home__hero-btn--primary">
+                                <FaPhone className="home__hero-btn-icon" />
+                                <span>Hívás</span>
+                            </a>
+                            <a href="mailto:kiss.mate@example.com" className="home__hero-btn home__hero-btn--secondary">
+                                <FaEnvelope className="home__hero-btn-icon" />
+                                <span>E-mail</span>
+                            </a>
                         </div>
                     </div>
-
-                    {/* Right side: Navigation Icons/Links */}
-                    <nav className="home__header-nav">
-                        <Link to="/" className="home__header-nav-item">
-                            <FaHome className="home__header-icon" />
-                            <span className="home__header-text">Bemutatkozás</span>
-                        </Link>
-                        <Link to="/services" className="home__header-nav-item">
-                            <FaHandSparkles className="home__header-icon" />
-                            <span className="home__header-text">Szolgáltatások</span>
-                        </Link>
-                        <Link to="/prices" className="home__header-nav-item">
-                            <FaMoneyBillWave className="home__header-icon" />
-                            <span className="home__header-text">Árak</span>
-                        </Link>
-                        <Link to="/contact" className="home__header-nav-item">
-                            <FaEnvelope className="home__header-icon" />
-                            <span className="home__header-text">Kapcsolat</span>
-                        </Link>
-                    </nav>
                 </div>
-
+                
                 {/* Hero / About divider */}
                 <div className="section1__divider-bottom">
                     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">

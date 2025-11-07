@@ -74,6 +74,23 @@
   --info-light: #{light-color('info-light')};
   --info-dark: #{light-color('info-dark')};
   
+  // Gold/Accent Colors
+  --gold-50: #{light-color('gold-50')};
+  --gold-100: #{light-color('gold-100')};
+  --gold-200: #{light-color('gold-200')};
+  --gold-300: #{light-color('gold-300')};
+  --gold-400: #{light-color('gold-400')};
+  --gold-500: #{light-color('gold-500')};
+  --gold-600: #{light-color('gold-600')};
+  --gold-700: #{light-color('gold-700')};
+  --gold-800: #{light-color('gold-800')};
+  --gold-900: #{light-color('gold-900')};
+  --gold-950: #{light-color('gold-950')};
+  
+  // Gold RGB values for alpha calculations
+  --gold-500-rgb: 234, 179, 8;
+  --gold-600-rgb: 202, 138, 4;
+  
   // Form Colors
   --input-bg: var(--bg-primary);
   --input-border: var(--border-color);
@@ -102,7 +119,7 @@
 // LIGHT MODE SPECIFIC STYLES
 // ==========================================================================
 [data-theme="light"] {
-  // Override any specific light mode adjustments here
+  // Light mode is default, no specific overrides needed
 }
 
 // SYSTEM PREFERENCE SUPPORT

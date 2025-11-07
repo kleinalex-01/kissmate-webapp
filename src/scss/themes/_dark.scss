@@ -74,6 +74,23 @@
   --info-light: #{dark-color('info-light')};
   --info-dark: #{dark-color('info-dark')};
   
+  // Gold/Accent Colors (Dark Mode)
+  --gold-50: #{dark-color('gold-50')};
+  --gold-100: #{dark-color('gold-100')};
+  --gold-200: #{dark-color('gold-200')};
+  --gold-300: #{dark-color('gold-300')};
+  --gold-400: #{dark-color('gold-400')};
+  --gold-500: #{dark-color('gold-500')};
+  --gold-600: #{dark-color('gold-600')};
+  --gold-700: #{dark-color('gold-700')};
+  --gold-800: #{dark-color('gold-800')};
+  --gold-900: #{dark-color('gold-900')};
+  --gold-950: #{dark-color('gold-950')};
+  
+  // Gold RGB values for alpha calculations
+  --gold-500-rgb: 234, 179, 8;
+  --gold-600-rgb: 250, 204, 21;
+  
   // Form Colors (Dark Mode)
   --input-bg: var(--neutral-800);
   --input-border: var(--neutral-600);

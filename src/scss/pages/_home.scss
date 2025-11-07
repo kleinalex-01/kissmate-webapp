@@ -1,13 +1,222 @@
-.home__container {
 
-}
 /* Section 1 styles */
     .home__section1 {
         height: 100vh;
-        background-color: var(--neutral-900);
         position: relative;  // Added to contain absolutely positioned dividers
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
+    /* Hero Section Content */
+    .home__hero {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 1200px;
+        @include padding(0, 6, 0, 6);
+        text-align: center;
+        transform: translateY(-15%);
+        
+        @include respond-below('tablet') {
+            @include padding(0, 4, 0, 4);
+            transform: translateY(-12%);
+        }
+        
+        @include respond-below('mobile-l') {
+            @include padding(0, 3, 0, 3);
+            transform: translateY(-10%);
+        }
+    }
+
+    .home__hero-content {
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .home__hero-greeting {
+        @include font-size('2xl');
+        color: var(--gold-500);
+        font-weight: 600;
+        margin-bottom: spacing(2);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+                     0 0 20px rgba(var(--gold-500-rgb), 0.4);
+        
+        @include respond-below('tablet') {
+            @include font-size('xl');
+            letter-spacing: 2px;
+        }
+        
+        @include respond-below('mobile-l') {
+            @include font-size('lg');
+        }
+    }
+
+    .home__hero-title {
+        display: flex;
+        flex-direction: column;
+        gap: spacing(2);
+        margin-bottom: spacing(4);
+    }
+
+    .home__hero-title-main {
+        @include font-size('5xl');
+        @include font-weight('bold');
+        color: var(--text-primary);
+        line-height: 1.2;
+        background: linear-gradient(135deg, var(--primary-400), var(--primary-600));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))
+                drop-shadow(0 0 20px rgba(var(--primary-500-rgb), 0.3));
+        
+        @include respond-below('laptop') {
+            @include font-size('4xl');
+        }
+        
+        @include respond-below('tablet') {
+            @include font-size('3xl');
+        }
+        
+        @include respond-below('mobile-l') {
+            @include font-size('2xl');
+        }
+    }
+
+    .home__hero-title-sub {
+        @include font-size('2xl');
+        @include font-weight('medium');
+        color: var(--gold-600);
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25),
+                     0 0 15px rgba(var(--gold-600-rgb), 0.3);
+        
+        @include respond-below('laptop') {
+            @include font-size('xl');
+        }
+        
+        @include respond-below('tablet') {
+            @include font-size('lg');
+        }
+        
+        @include respond-below('mobile-l') {
+            @include font-size('base');
+        }
+    }
+
+    .home__hero-description {
+        @include font-size('lg');
+        color: var(--text-secondary);
+        max-width: 700px;
+        margin: 0 auto spacing(6);
+        line-height: 1.8;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        
+        @include respond-below('tablet') {
+            @include font-size('base');
+            margin-bottom: spacing(5);
+        }
+    }
+
+    .home__hero-cta {
+        display: flex;
+        gap: spacing(4);
+        justify-content: center;
+        flex-wrap: wrap;
+        
+        @include respond-below('mobile-l') {
+            gap: spacing(3);
+        }
+    }
+
+    .home__hero-btn {
+        @include flex($align: center, $justify: center);
+        gap: spacing(2);
+        @include padding(3, 6, 3, 6);
+        @include font-size('base');
+        @include font-weight('semibold');
+        border-radius: border-radius('lg');
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        
+        @include respond-below('tablet') {
+            @include padding(2.5, 5, 2.5, 5);
+            @include font-size('sm');
+        }
+        
+        @include respond-below('mobile-l') {
+            @include padding(2, 4, 2, 4);
+        }
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.5s ease;
+        }
+        
+        &:hover::before {
+            left: 100%;
+        }
+    }
+
+    .home__hero-btn--primary {
+        background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+        color: white;
+        box-shadow: 0 4px 15px rgba(var(--primary-600-rgb), 0.3);
+        
+        &:hover {
+            color: var(--gold-500);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(var(--primary-600-rgb), 0.4);
+        }
+        
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    .home__hero-btn--secondary {
+        background: linear-gradient(135deg, var(--gold-500), var(--gold-700));
+        color: white;
+        box-shadow: 0 4px 15px rgba(var(--gold-600-rgb), 0.3);
+        
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(var(--gold-600-rgb), 0.4);
+        }
+        
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    .home__hero-btn-icon {
+        @include font-size('lg');
+        
+        @include respond-below('tablet') {
+            @include font-size('base');
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
     .home__header {
         @include flex-between;
@@ -347,7 +556,9 @@
     }
 
     /* Section 1 dividers */
+
         .section1__divider-bottom {
+            z-index: 1000;
             position: absolute;
             bottom: 0;
             left: 0;
@@ -366,6 +577,7 @@
         }
 
         .section1__divider-top {
+            z-index: 1100;
             position: absolute;
             bottom: 0;
             left: 0;

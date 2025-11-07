@@ -91,7 +91,20 @@ $light-colors: (
   
   info-light: #dbeafe,
   info: #3b82f6,
-  info-dark: #2563eb
+  info-dark: #2563eb,
+  
+  // Gold/Accent Colors
+  gold-50: #fefce8,
+  gold-100: #fef9c3,
+  gold-200: #fef08a,
+  gold-300: #fde047,
+  gold-400: #facc15,
+  gold-500: #eab308,   // Main gold
+  gold-600: #ca8a04,
+  gold-700: #a16207,
+  gold-800: #854d0e,
+  gold-900: #713f12,
+  gold-950: #422006
 ) !default;
 
 // DARK THEME COLORS
@@ -139,7 +152,20 @@ $dark-colors: (
   
   info-light: #1e40af,
   info: #60a5fa,
-  info-dark: #93c5fd
+  info-dark: #93c5fd,
+  
+  // Gold/Accent Colors (Dark Mode)
+  gold-50: #422006,
+  gold-100: #713f12,
+  gold-200: #854d0e,
+  gold-300: #a16207,
+  gold-400: #ca8a04,
+  gold-500: #eab308,   // Main gold
+  gold-600: #facc15,
+  gold-700: #fde047,
+  gold-800: #fef08a,
+  gold-900: #fef9c3,
+  gold-950: #fefce8
 ) !default;
 
 // TYPOGRAPHY
