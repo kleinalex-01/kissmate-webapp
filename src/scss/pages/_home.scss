@@ -50,7 +50,7 @@
         }
         
         @include respond-below('mobile-l') {
-            @include font-size('lg');
+            @include font-size('xl');
         }
     }
 
@@ -82,7 +82,7 @@
         }
         
         @include respond-below('mobile-l') {
-            @include font-size('2xl');
+            @include font-size('3xl');
         }
     }
 
@@ -102,7 +102,7 @@
         }
         
         @include respond-below('mobile-l') {
-            @include font-size('base');
+            @include font-size('lg');
         }
     }
 
@@ -117,6 +117,10 @@
         @include respond-below('tablet') {
             @include font-size('base');
             margin-bottom: spacing(5);
+        }
+        
+        @include respond-below('mobile-l') {
+            @include font-size('base');
         }
     }
 
@@ -149,7 +153,8 @@
         }
         
         @include respond-below('mobile-l') {
-            @include padding(2, 4, 2, 4);
+            @include padding(3.5, 5, 3.5, 5);
+            @include font-size('base');
         }
         
         &::before {
@@ -205,6 +210,10 @@
         @include respond-below('tablet') {
             @include font-size('base');
         }
+        
+        @include respond-below('mobile-l') {
+            @include font-size('lg');
+        }
     }
 
     @keyframes fadeInUp {
@@ -236,11 +245,11 @@
         }
         
         @include respond-below('mobile-l') {
-            @include padding(2, 3, 2, 3);
+            @include padding(3, 3, 3, 3);
         }
         
         @include respond-below('mobile-m') {
-            @include padding(2, 2, 2, 2);
+            @include padding(3, 2.5, 3, 2.5);
         }
     }
 
@@ -474,7 +483,7 @@
             
             .home__header-icon {
                 transform: scale(1.2) rotate(5deg);
-                color: var(--primary-600);
+                color: var(--gold-600);
             }
             
             .home__header-text {
@@ -484,10 +493,12 @@
         
         // Active state bounce
         &:active {
+            color: var(--gold-600);
             transform: translateY(-1px) scale(0.98);
         }
         
         &:focus {
+            color: var(--gold-600);
             outline: 2px solid var(--primary-500);
             outline-offset: 2px;
             background-color: var(--primary-100);
@@ -533,11 +544,11 @@
         }
         
         @include respond-below('mobile-l') {
-            @include font-size('base');
+            @include font-size('lg');
         }
         
         @include respond-below('mobile-m') {
-            @include font-size('sm');
+            @include font-size('base');
         }
     }
 
