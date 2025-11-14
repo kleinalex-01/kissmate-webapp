@@ -182,6 +182,110 @@ const Home = () => {
 
             </div>
 
+            <div className="home__section3">
+                <div className="home__section3__divider-top">
+                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M0,0V6c0,21.6,291,111.46,741,110.26,445.39,3.6,459-88.3,459-110.26V0Z" className="home__section3__divider-top"></path>
+                    </svg>
+                </div>
+                <HexagonBackground fixed={false} />
+
+                {/* Services & About Section */}
+                <motion.div 
+                    className="home__services-about"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                    {/* Services Section */}
+                    <motion.div 
+                        className="home__services"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                        <div className="home__services-header">
+                            <h2 className="home__services-title">Szolgáltatások</h2>
+                            <p className="home__services-subtitle">
+                                Gondos és professzionális masszázs az egészség megőrzéséért
+                            </p>
+                        </div>
+
+                        <div className="home__services-grid">
+                            <motion.div 
+                                className="home__service-card"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                            >
+                                <div className="home__service-icon">
+                                    <FaHandHoldingHeart />
+                                </div>
+                                <h3 className="home__service-title">Gyógyító Masszázs</h3>
+                                <p className="home__service-description">
+                                    Teljes test masszázs relaxációs és gyógyító technikákkal. Fájdalomcsillapítás, 
+                                    stresszoldás és általános jólét javítása érdekében.
+                                </p>
+                                <div className="home__service-features">
+                                    <span className="home__service-feature">60 perc</span>
+                                    <span className="home__service-feature">8.000 Ft</span>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </motion.div>
+
+                    {/* About Section */}
+                    <motion.div 
+                        className="home__about"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                    >
+                        <div className="home__about-content">
+                            <div className="home__about-text">
+                                <h2 className="home__about-title">Ismerj Meg</h2>
+                                <p className="home__about-description">
+                                    Üdvözöllek! Kiss Máté vagyok, <strong>minősített masszőr</strong> több éves tapasztalattal. 
+                                    Hiszem, hogy a masszázs nem csak testi, hanem lelki gyógyulás is. Minden kezelésemet 
+                                    az egyéni igények figyelembevételével, professzionális hozzáállással végzem.
+                                </p>
+                                <p className="home__about-description">
+                                    Célom, hogy segítsem az embereket a mindennapi stressz és feszültség leküzdésében, 
+                                    hogy újra energiával telve érezzék magukat. Minden kezelés egyedi, személyre szabott 
+                                    élmény, ahol az Ön komfortja és gyógyulása a legfontosabb.
+                                </p>
+                                <div className="home__about-credentials">
+                                    <div className="home__about-credential">
+                                        <FaShieldAlt className="home__about-credential-icon" />
+                                        <span>Minősített Terapeuta</span>
+                                    </div>
+                                    <div className="home__about-credential">
+                                        <FaHeartbeat className="home__about-credential-icon" />
+                                        <span>5+ Év Tapasztalat</span>
+                                    </div>
+                                    <div className="home__about-credential">
+                                        <FaLeaf className="home__about-credential-icon" />
+                                        <span>Naturális Megközelítés</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="home__about-image">
+                                <img 
+                                    src="/pictures/kissmate-profilkep.JPG" 
+                                    alt="Kiss Máté - Masszázsterapeuta" 
+                                    className="home__about-photo"
+                                />
+                            </div>
+                        </div>
+                    </motion.div>
+                </motion.div>
+
+            </div>
+
         </div>
     </>
     )

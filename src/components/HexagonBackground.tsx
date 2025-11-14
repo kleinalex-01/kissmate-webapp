@@ -69,8 +69,13 @@ const HexParallaxBackground: React.FC<HexParallaxBackgroundProps> = ({
     let t = 0;
 
     const onResize = () => {
-      w = window.innerWidth;
-      h = window.innerHeight;
+      if (fixed) {
+        w = window.innerWidth;
+        h = window.innerHeight;
+      } else if (wrapperRef.current) {
+        w = wrapperRef.current.clientWidth;
+        h = wrapperRef.current.clientHeight;
+      }
       // Update SVG viewBox sizes on resize for crisp lines
       layerRefs.current.forEach((svg) => {
         if (!svg) return;
@@ -127,7 +132,7 @@ const HexParallaxBackground: React.FC<HexParallaxBackgroundProps> = ({
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("scroll", onScroll);
     };
-  }, [intensity, driftSpeed, layers]);
+  }, [intensity, driftSpeed, layers, fixed]);
 
   // Build one <pattern> per layer with its own hex size
   const renderLayer = (cfg: LayerConfig, idx: number) => {
