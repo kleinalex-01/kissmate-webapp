@@ -187,7 +187,28 @@
         max-width: 700px;
         margin: 0 auto spacing(10);
         line-height: 1.8;
+        @include font-weight('medium');
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        
+        // Typewriter effect with word wrapping
+        display: inline-block;
+        position: relative;
+        
+        &::after {
+            content: '|';
+            position: absolute;
+            right: -3px;
+            color: var(--gold-500);
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        // Animated reveal effect
+        animation: reveal 4s steps(100, end) 0.8s forwards;
+        
+        // Initially hide text
+        & {
+            clip-path: inset(0 100% 0 0);
+        }
         
         @include respond-below('tablet') {
             @include font-size('base');
@@ -195,7 +216,47 @@
         }
         
         @include respond-below('mobile-l') {
-            @include font-size('base');
+            @include font-size('sm');
+            animation: fadeIn 1s ease-out 0.8s backwards;
+            clip-path: none;
+            
+            &::after {
+                display: none;
+            }
+        }
+
+        // Bold keywords styling
+        strong {
+            color: var(--text-primary);
+            @include font-weight('bold');
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    @keyframes reveal {
+        from {
+            clip-path: inset(0 100% 0 0);
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes blink-caret {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
         }
     }
 
@@ -255,8 +316,17 @@
         
         &:hover {
             color: var(--gold-500);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6),
+                         0 0 20px rgba(0, 0, 0, 0.4),
+                         0 1px 3px rgba(0, 0, 0, 0.8);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(var(--primary-600-rgb), 0.4);
+            
+            .home__hero-btn-icon {
+                filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6))
+                        drop-shadow(0 0 20px rgba(0, 0, 0, 0.4))
+                        drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+            }
         }
         
         &:active {

@@ -58,8 +58,8 @@ const Home = () => {
                             <span className="home__hero-title-sub">Masszázsterapeuta</span>
                         </h1>
                         <p className="home__hero-description">
-                            Minősített masszőr vagyok,
-                            segítek a mindennapi stressz és feszültség leküzdésében, hogy újra energiával tele érezd magad.
+                            <strong>Minősített masszőr</strong> vagyok,
+                            segítek a mindennapi <strong>stressz</strong> és <strong>feszültség leküzdésében</strong>, hogy újra energiával tele érezd magad.
                         </p>
                         <div className="home__hero-cta">
                             <a href="tel:+36301234567" className="home__hero-btn home__hero-btn--primary">
