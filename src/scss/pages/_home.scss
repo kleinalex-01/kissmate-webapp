@@ -30,16 +30,12 @@
         }
     }
 
-    .home__hero-content {
-        animation: fadeInUp 1s ease-out;
-    }
-
     .home__hero-icons {
         display: flex;
         justify-content: center;
         gap: spacing(4);
         margin-bottom: spacing(4);
-        animation: fadeIn 1.2s ease-out 0.3s backwards;
+        // Animation now handled by Motion library
 
         @include respond-below('tablet') {
             gap: spacing(3);
@@ -100,14 +96,7 @@
         }
     }
 
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
+    // fadeIn animation removed - now handled by Motion library
 
     .home__hero-greeting {
         @include font-size('2xl');
@@ -190,25 +179,7 @@
         @include font-weight('medium');
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         
-        // Typewriter effect with word wrapping
-        display: inline-block;
-        position: relative;
-        
-        &::after {
-            content: '|';
-            position: absolute;
-            right: -3px;
-            color: var(--gold-500);
-            animation: blink-caret 0.75s step-end infinite;
-        }
-
-        // Animated reveal effect
-        animation: reveal 4s steps(100, end) 0.8s forwards;
-        
-        // Initially hide text
-        & {
-            clip-path: inset(0 100% 0 0);
-        }
+        // Animation now handled by Motion library in hero section
         
         @include respond-below('tablet') {
             @include font-size('base');
@@ -217,12 +188,6 @@
         
         @include respond-below('mobile-l') {
             @include font-size('sm');
-            animation: fadeIn 1s ease-out 0.8s backwards;
-            clip-path: none;
-            
-            &::after {
-                display: none;
-            }
         }
 
         // Bold keywords styling
@@ -233,32 +198,7 @@
         }
     }
 
-    @keyframes reveal {
-        from {
-            clip-path: inset(0 100% 0 0);
-        }
-        to {
-            clip-path: inset(0 0 0 0);
-        }
-    }
-
-    @keyframes blink-caret {
-        from, to {
-            opacity: 0;
-        }
-        50% {
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
+    // fadeInUp animation removed - now handled by Motion library
 
     .home__hero-cta {
         display: flex;
@@ -361,16 +301,7 @@
         }
     }
 
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+    // fadeInUp animation removed - now handled by Motion library
 
     .home__header {
         @include flex-between;

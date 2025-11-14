@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { motion } from "motion/react";
 
 const Footer = () => {
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
@@ -13,7 +14,13 @@ const Footer = () => {
   };
 
   return (
-    <footer className="footer">
+    <motion.footer 
+      className="footer"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       <div className="footer__container">
         {/* Main Footer Content */}
         <div className="footer__content">
@@ -155,7 +162,7 @@ const Footer = () => {
           </div>
         </div>
       )}
-    </footer>
+    </motion.footer>
   );
 };
 

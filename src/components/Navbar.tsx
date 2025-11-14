@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FaHome, FaHandSparkles, FaMoneyBillWave, FaEnvelope } from 'react-icons/fa'
 import { useState, useEffect, useMemo } from 'react'
+import { motion } from 'motion/react'
 
 const Navbar = () => {
     const titles = useMemo(() => ["Masszőr", "Sportmasszőr"], [])
@@ -39,9 +40,19 @@ const Navbar = () => {
     }, [displayText, isDeleting, currentTitleIndex, titles, typingSpeed])
 
     return (
-        <div className="home__header">
+        <motion.div 
+            className="home__header"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+        >
             {/* Left side: Image and Name */}
-            <div className="home__header-left">
+            <motion.div 
+                className="home__header-left"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            >
                 <img 
                     src="/pictures/kissmate-profilkep.JPG" 
                     alt="Kiss Máté" 
@@ -57,10 +68,15 @@ const Navbar = () => {
                         </span>
                     </h1>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Right side: Navigation Icons/Links */}
-            <nav className="home__header-nav">
+            <motion.nav 
+                className="home__header-nav"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            >
                 <Link to="/" className="home__header-nav-item">
                     <FaHome className="home__header-icon" />
                     <span className="home__header-text">Bemutatkozás</span>
@@ -77,8 +93,8 @@ const Navbar = () => {
                     <FaEnvelope className="home__header-icon" />
                     <span className="home__header-text">Kapcsolat</span>
                 </Link>
-            </nav>
-        </div>
+            </motion.nav>
+        </motion.div>
     )
 }
 

@@ -1,6 +1,7 @@
 import { HexagonBackground } from "./HexagonBackground";
 import { FaPhone, FaHeartbeat, FaShieldAlt, FaBolt, FaDumbbell, FaBrain, FaLeaf, FaHandHoldingHeart, FaSpa, FaHeart, FaHandsHelping } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
 
 const Home = () => {
     const benefitsRef = useRef<HTMLDivElement>(null);
@@ -42,16 +43,26 @@ const Home = () => {
                 <HexagonBackground fixed={false} />
                 
                 {/* Hero Content */}
-                <div className="home__hero">
+                <motion.div 
+                    className="home__hero"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                >
                     <div className="home__hero-content">
                         {/* Massage Icons */}
-                        <div className="home__hero-icons">
+                        <motion.div 
+                            className="home__hero-icons"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                        >
                             <FaHandHoldingHeart className="home__hero-icon" />
                             <FaSpa className="home__hero-icon" />
                             <FaLeaf className="home__hero-icon" />
                             <FaHeart className="home__hero-icon" />
                             <FaHandsHelping className="home__hero-icon" />
-                        </div>
+                        </motion.div>
                         
                         <h1 className="home__hero-title">
                             <span className="home__hero-title-main">Kiss Máté</span>
@@ -68,7 +79,7 @@ const Home = () => {
                             </a>
                         </div>
                     </div>
-                </div>
+                </motion.div>
                 
                 {/* Hero / About divider */}
                 <div className="section1__divider-bottom">
@@ -85,13 +96,25 @@ const Home = () => {
             </div>
 
             <div className="home__section2">
-                <div className="home__benefits">
-                    <div className="home__benefits-header">
+                <motion.div 
+                    className="home__benefits"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                    <motion.div 
+                        className="home__benefits-header"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
                         <h2 className="home__benefits-title">Miért járj masszázsra?</h2>
                         <p className="home__benefits-subtitle">
                             A rendszeres masszázs számtalan előnnyel rendelkezik mind a tested, mind a lelked egészségére
                         </p>
-                    </div>
+                    </motion.div>
 
                     <div className="home__benefits-grid" ref={benefitsRef}>
                         <div className={`home__benefit-card ${cardsVisible[0] ? 'reveal' : ''}`}>
@@ -154,7 +177,7 @@ const Home = () => {
                             </p>
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
 
             </div>
