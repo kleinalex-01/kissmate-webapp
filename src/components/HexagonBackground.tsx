@@ -156,7 +156,7 @@ const HexParallaxBackground: React.FC<HexParallaxBackgroundProps> = ({
         ref={(el) => { layerRefs.current[idx] = el; }}
         className="hex-layer"
         aria-hidden
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMidYMid slice"
       >
         <defs>
           <pattern
