@@ -17,10 +17,6 @@
   @return get-color($light-colors, $color-name);
 }
 
-@function dark-color($color-name) {
-  @return get-color($dark-colors, $color-name);
-}
-
 // SPACING FUNCTIONS
 // ==========================================================================
 @function spacing($multiplier) {

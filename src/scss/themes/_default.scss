@@ -115,17 +115,3 @@
   // Color scheme identifier
   color-scheme: light;
 }
-
-// LIGHT MODE SPECIFIC STYLES
-// ==========================================================================
-[data-theme="light"] {
-  // Light mode is default, no specific overrides needed
-}
-
-// SYSTEM PREFERENCE SUPPORT
-// ==========================================================================
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) {
-    // Light mode is default, no overrides needed
-  }
-}
