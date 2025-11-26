@@ -2,8 +2,14 @@ import { HexagonBackground } from "./HexagonBackground";
 import { FaPhone, FaHeartbeat, FaShieldAlt, FaBolt, FaDumbbell, FaBrain, FaLeaf, FaHandHoldingHeart, FaSpa, FaHeart, FaHandsHelping } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
+import { useSEO } from "../hooks/useDocumentTitle";
 
 const Home = () => {
+    useSEO({
+        title: "Bemutatozás",
+        description: "Kiss Máté masszázsterapeuta Budapesten. Professzionális svéd masszázs és sportmasszázs kiszállással. Foglalj időpontot: 06 30 351 7803"
+    });
+
     const benefitsRef = useRef<HTMLDivElement>(null);
     const benefitsSectionRef = useRef<HTMLDivElement>(null);
     const [cardsVisible, setCardsVisible] = useState<boolean[]>(new Array(6).fill(false));
@@ -93,7 +99,7 @@ const Home = () => {
                             segítek a mindennapi <strong>stressz</strong> és <strong>feszültség leküzdésében</strong>, hogy újra energiával tele érezd magad.
                         </p>
                         <div className="home__hero-cta">
-                            <a href="tel:+36301234567" className="home__hero-btn home__hero-btn--primary">
+                            <a href="tel:+36303517803" className="home__hero-btn home__hero-btn--primary">
                                 <FaPhone className="home__hero-btn-icon" />
                                 <span>Foglalj időpontot most!</span>
                             </a>

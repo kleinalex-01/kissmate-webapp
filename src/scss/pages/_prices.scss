@@ -3,25 +3,602 @@
 // ==========================================================================
 
 .prices {
-  &__header {
-    text-align: center;
-    @include padding(12, 0, 8, 0);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include padding(8, 4, 8, 4);
+
+  @include respond-below('tablet') {
+    @include padding(6, 3, 6, 3);
   }
-  
-  &__title {
-    @include font-size('4xl');
-    @include font-weight('bold');
+}
+
+.prices__container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.prices__header {
+  text-align: center;
+  margin-bottom: spacing(8);
+
+  @include respond-below('tablet') {
+    margin-bottom: spacing(6);
+  }
+}
+
+.prices__title {
+  @include font-size('4xl');
+  @include font-weight('bold');
+  color: var(--primary-400);
+  margin-bottom: spacing(3);
+
+  @include respond-below('tablet') {
+    @include font-size('3xl');
+  }
+
+  @include respond-below('mobile-l') {
+    @include font-size('2xl');
+  }
+}
+
+.prices__subtitle {
+  @include font-size('lg');
+  color: var(--text-primary);
+
+  @include respond-below('tablet') {
+    @include font-size('base');
+  }
+}
+
+// Price Cards Grid
+.prices__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: spacing(6);
+
+  @include respond-below('desktop') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-below('tablet') {
+    grid-template-columns: 1fr;
+    gap: spacing(4);
+  }
+}
+
+// Individual Price Card
+.prices__card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: border-radius('xl');
+  @include padding(6, 5, 6, 5);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(var(--gold-400-rgb), 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(var(--gold-500-rgb), 0.4);
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Top golden accent
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+      var(--gold-400) 0%, 
+      var(--gold-500) 50%, 
+      var(--gold-400) 100%
+    );
+    transition: height 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 12px 35px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(var(--gold-500-rgb), 0.5),
+      0 0 25px rgba(var(--gold-500-rgb), 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: var(--gold-500);
+
+    &::before {
+      height: 5px;
+    }
+
+    .prices__card-icon-wrapper {
+      transform: scale(1.08);
+    }
+  }
+
+  @include respond-below('mobile-l') {
+    @include padding(5, 4, 5, 4);
+  }
+}
+
+.prices__card--coming-soon {
+  opacity: 0.8;
+  border-style: dashed;
+
+  .prices__card-icon-wrapper {
+    background: linear-gradient(135deg, var(--neutral-300) 0%, var(--neutral-400) 100%);
+  }
+}
+
+.prices__card-badge {
+  position: absolute;
+  top: spacing(2);
+  right: spacing(2);
+  background: linear-gradient(135deg, var(--neutral-500), var(--neutral-600));
+  color: white;
+  font-size: 0.625rem;
+  @include font-weight('semibold');
+  padding: 0.35rem 0.75rem;
+  border-radius: border-radius('full');
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+
+  @include respond-below('mobile-l') {
+    font-size: 0.5rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+.prices__card-icon-wrapper {
+  @include flex-center;
+  @include size(72px);
+  background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 100%);
+  border-radius: border-radius('full');
+  margin-bottom: spacing(4);
+  box-shadow: 0 4px 15px rgba(var(--gold-500-rgb), 0.35);
+  transition: all 0.3s ease;
+
+  @include respond-below('mobile-l') {
+    @include size(60px);
+    margin-bottom: spacing(3);
+  }
+}
+
+.prices__card-icon {
+  @include font-size('2xl');
+  color: white;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+
+  @include respond-below('mobile-l') {
+    @include font-size('xl');
+  }
+}
+
+.prices__card-title {
+  @include font-size('xl');
+  @include font-weight('bold');
+  color: var(--primary-400);
+  margin-bottom: spacing(4);
+
+  @include respond-below('mobile-l') {
+    @include font-size('lg');
+    margin-bottom: spacing(3);
+  }
+}
+
+// Sections (Single prices & Memberships)
+.prices__card-section {
+  width: 100%;
+  margin-bottom: spacing(4);
+
+  @include respond-below('mobile-l') {
+    margin-bottom: spacing(3);
+  }
+}
+
+.prices__card-section--membership {
+  background: rgba(var(--gold-100-rgb), 0.3);
+  border-radius: border-radius('lg');
+  @include padding(4, 4, 4, 4);
+  margin-left: spacing(-2);
+  margin-right: spacing(-2);
+  width: calc(100% + #{spacing(4)});
+
+  @include respond-below('mobile-l') {
+    @include padding(3, 3, 3, 3);
+  }
+}
+
+.prices__card-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: spacing(2);
+  margin-bottom: spacing(3);
+  @include font-size('sm');
+  @include font-weight('semibold');
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  @include respond-below('mobile-l') {
+    @include font-size('xs');
+    margin-bottom: spacing(2);
+  }
+}
+
+.prices__card-section-icon {
+  color: var(--gold-500);
+  @include font-size('sm');
+}
+
+// Single session prices
+.prices__card-prices {
+  display: flex;
+  flex-direction: column;
+  gap: spacing(2);
+}
+
+.prices__card-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: spacing(2) spacing(3);
+  background: rgba(var(--gold-100-rgb), 0.4);
+  border-radius: border-radius('md');
+  border: 1px solid rgba(var(--gold-300-rgb), 0.3);
+
+  @include respond-below('mobile-l') {
+    padding: spacing(1.5) spacing(2);
+  }
+}
+
+.prices__card-duration {
+  @include font-size('sm');
+  color: var(--text-secondary);
+
+  @include respond-below('mobile-l') {
+    @include font-size('xs');
+  }
+}
+
+.prices__card-price {
+  @include font-size('lg');
+  @include font-weight('bold');
+  color: var(--gold-600);
+
+  @include respond-below('mobile-l') {
+    @include font-size('base');
+  }
+}
+
+// Membership prices
+.prices__card-memberships {
+  display: flex;
+  flex-direction: column;
+  gap: spacing(3);
+}
+
+.prices__card-membership {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: spacing(3);
+  background: white;
+  border-radius: border-radius('md');
+  border: 1px solid rgba(var(--gold-400-rgb), 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  @include respond-below('mobile-l') {
+    padding: spacing(2);
+    flex-direction: column;
+    gap: spacing(2);
+  }
+}
+
+.prices__card-membership-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: spacing(1);
+
+  @include respond-below('mobile-l') {
+    align-items: center;
+  }
+}
+
+.prices__card-membership-sessions {
+  @include font-size('sm');
+  @include font-weight('medium');
+  color: var(--text-primary);
+
+  @include respond-below('mobile-l') {
+    @include font-size('xs');
+  }
+}
+
+.prices__card-membership-savings {
+  @include font-size('xs');
+  color: var(--success-600);
+  @include font-weight('semibold');
+  background: rgba(var(--success-100-rgb), 0.5);
+  padding: 0.15rem 0.5rem;
+  border-radius: border-radius('sm');
+}
+
+.prices__card-membership-price {
+  @include font-size('xl');
+  @include font-weight('bold');
+  color: var(--gold-600);
+
+  @include respond-below('mobile-l') {
+    @include font-size('lg');
+  }
+}
+
+// Note
+.prices__card-note {
+  @include font-size('xs');
+  color: var(--text-tertiary);
+  font-style: italic;
+  text-align: center;
+  margin-top: spacing(2);
+  padding-top: spacing(3);
+  border-top: 1px dashed rgba(var(--gold-400-rgb), 0.3);
+  width: 100%;
+}
+
+// Coming soon state
+.prices__card-coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: spacing(6) 0;
+}
+
+.prices__card-coming-soon-text {
+  @include font-size('base');
+  color: var(--text-secondary);
+
+  strong {
+    color: var(--primary-400);
+  }
+}
+
+// Detailed body part prices section
+.prices__card-section--detailed {
+  background: rgba(var(--primary-100-rgb), 0.15);
+  border-radius: border-radius('lg');
+  @include padding(4, 4, 4, 4);
+  margin-left: spacing(-2);
+  margin-right: spacing(-2);
+  width: calc(100% + #{spacing(4)});
+  border: 1px solid rgba(var(--primary-300-rgb), 0.2);
+
+  @include respond-below('mobile-l') {
+    @include padding(3, 3, 3, 3);
+  }
+}
+
+.prices__card-price-row--detailed {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.9);
+  padding: spacing(2.5) spacing(3);
+
+  @include respond-below('mobile-l') {
+    padding: spacing(2);
+  }
+}
+
+.prices__card-price-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: spacing(0.5);
+}
+
+.prices__card-label {
+  @include font-size('sm');
+  @include font-weight('semibold');
+  color: var(--text-primary);
+
+  @include respond-below('mobile-l') {
+    @include font-size('xs');
+  }
+}
+
+// ==========================================================================
+// CALL-OUT FEES SECTION
+// ==========================================================================
+
+.prices__callout {
+  margin-top: spacing(10);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: border-radius('xl');
+  @include padding(6, 8, 6, 8);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(var(--gold-400-rgb), 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(var(--gold-500-rgb), 0.4);
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Top golden accent
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+      var(--gold-400) 0%, 
+      var(--gold-500) 50%, 
+      var(--gold-400) 100%
+    );
+    border-radius: border-radius('xl') border-radius('xl') 0 0;
+    transition: height 0.3s ease;
+  }
+
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 12px 35px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(var(--gold-500-rgb), 0.5),
+      0 0 25px rgba(var(--gold-500-rgb), 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: var(--gold-500);
+
+    &::before {
+      height: 5px;
+    }
+
+    .prices__callout-icon {
+      transform: scale(1.15) rotate(-5deg);
+      color: var(--gold-600);
+    }
+
+    .prices__callout-title {
+      color: var(--primary-500);
+    }
+
+    .prices__callout-fee {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(var(--gold-500-rgb), 0.15);
+      border-color: rgba(var(--gold-400-rgb), 0.5);
+    }
+
+    .prices__callout-price {
+      transform: scale(1.05);
+    }
+  }
+
+  @include respond-below('tablet') {
+    margin-top: spacing(6);
+    @include padding(5, 5, 5, 5);
+  }
+
+  @include respond-below('mobile-l') {
+    @include padding(4, 4, 4, 4);
+  }
+}
+
+.prices__callout-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: spacing(3);
+  margin-bottom: spacing(5);
+
+  @include respond-below('mobile-l') {
+    gap: spacing(2);
     margin-bottom: spacing(4);
   }
-  
-  &__subtitle {
-    @include font-size('lg');
-    color: var(--text-secondary);
-    margin-bottom: spacing(12);
+}
+
+.prices__callout-icon {
+  @include font-size('2xl');
+  color: var(--gold-500);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @include respond-below('mobile-l') {
+    @include font-size('xl');
   }
-  
-  &__grid {
-    @include grid-responsive(1, 2, 3);
-    @include padding(0, 0, 16, 0);
+}
+
+.prices__callout-title {
+  @include font-size('xl');
+  @include font-weight('bold');
+  color: var(--primary-400);
+  margin: 0;
+  transition: color 0.3s ease;
+
+  @include respond-below('mobile-l') {
+    @include font-size('lg');
+  }
+}
+
+.prices__callout-fees {
+  display: flex;
+  justify-content: center;
+  gap: spacing(6);
+  margin-bottom: spacing(4);
+
+  @include respond-below('mobile-l') {
+    flex-direction: column;
+    gap: spacing(3);
+  }
+}
+
+.prices__callout-fee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: spacing(2);
+  padding: spacing(4) spacing(6);
+  background: rgba(var(--gold-100-rgb), 0.4);
+  border-radius: border-radius('lg');
+  border: 1px solid rgba(var(--gold-300-rgb), 0.3);
+  min-width: 180px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @include respond-below('mobile-l') {
+    padding: spacing(3) spacing(4);
+    min-width: unset;
+  }
+}
+
+.prices__callout-persons {
+  @include font-size('sm');
+  color: var(--text-secondary);
+  @include font-weight('medium');
+
+  @include respond-below('mobile-l') {
+    @include font-size('xs');
+  }
+}
+
+.prices__callout-price {
+  @include font-size('xl');
+  @include font-weight('bold');
+  color: var(--gold-600);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @include respond-below('mobile-l') {
+    @include font-size('lg');
+  }
+}
+
+.prices__callout-note {
+  @include font-size('sm');
+  color: var(--text-tertiary);
+  font-style: italic;
+  margin: 0;
+
+  @include respond-below('mobile-l') {
+    @include font-size('xs');
   }
 }

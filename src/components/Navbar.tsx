@@ -62,9 +62,9 @@ const Navbar = () => {
                     <h1 className="home__header-name">
                         Kiss Máté
                         <span className="home__header-title-separator"> - </span>
-                        <span className="home__header-typewriter-title">
-                            {displayText}
-                            <span className="home__header-typewriter-cursor">|</span>
+                        <span className="home__header-typewriter-title" aria-label="Masszőr, Sportmasszőr">
+                            <span aria-hidden="true">{displayText}</span>
+                            <span className="home__header-typewriter-cursor" aria-hidden="true">|</span>
                         </span>
                     </h1>
                 </div>
@@ -73,24 +73,25 @@ const Navbar = () => {
             {/* Right side: Navigation Icons/Links */}
             <motion.nav 
                 className="home__header-nav"
+                aria-label="Fő navigáció"
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
             >
                 <Link to="/" className="home__header-nav-item">
-                    <FaHome className="home__header-icon" />
+                    <FaHome className="home__header-icon" aria-hidden="true" />
                     <span className="home__header-text">Bemutatkozás</span>
                 </Link>
                 <Link to="/services" className="home__header-nav-item">
-                    <FaHandSparkles className="home__header-icon" />
+                    <FaHandSparkles className="home__header-icon" aria-hidden="true" />
                     <span className="home__header-text">Szolgáltatások</span>
                 </Link>
                 <Link to="/prices" className="home__header-nav-item">
-                    <FaMoneyBillWave className="home__header-icon" />
+                    <FaMoneyBillWave className="home__header-icon" aria-hidden="true" />
                     <span className="home__header-text">Árak</span>
                 </Link>
                 <Link to="/contact" className="home__header-nav-item">
-                    <FaEnvelope className="home__header-icon" />
+                    <FaEnvelope className="home__header-icon" aria-hidden="true" />
                     <span className="home__header-text">Kapcsolat</span>
                 </Link>
             </motion.nav>

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "motion/react";
 
@@ -9,9 +10,29 @@ const Footer = () => {
     setSelectedCert(certPath);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setSelectedCert(null);
-  };
+  }, []);
+
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && selectedCert) {
+        handleCloseModal();
+      }
+    };
+
+    if (selectedCert) {
+      document.addEventListener("keydown", handleKeyDown);
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedCert, handleCloseModal]);
 
   return (
     <motion.footer 
@@ -30,16 +51,16 @@ const Footer = () => {
             <p className="footer__brand-title">Masszázsterapeuta</p>
             
             <div className="footer__contact">
-              <a href="tel:+36301234567" className="footer__contact-link">
-                <FaPhone className="footer__contact-icon" />
-                +36 30 123 4567
+              <a href="tel:+36303517803" className="footer__contact-link" aria-label="Telefon: 06 30 351 7803">
+                <FaPhone className="footer__contact-icon" aria-hidden="true" />
+                06 30 351 7803
               </a>
-              <a href="mailto:info@kissmate.hu" className="footer__contact-link">
-                <FaEnvelope className="footer__contact-icon" />
-                info@kissmate.hu
+              <a href="mailto:kmmasszazs@gmail.com" className="footer__contact-link" aria-label="Email: kmmasszazs@gmail.com">
+                <FaEnvelope className="footer__contact-icon" aria-hidden="true" />
+                kmmasszazs@gmail.com
               </a>
               <span className="footer__contact-text">
-                <FaMapMarkerAlt className="footer__contact-icon" />
+                <FaMapMarkerAlt className="footer__contact-icon" aria-hidden="true" />
                 Budapest, Magyarország
               </span>
             </div>
@@ -47,36 +68,40 @@ const Footer = () => {
 
           {/* Certifications */}
           <div className="footer__certifications-wrapper">
-            <div className="footer__certifications">
-              <div 
+            <div className="footer__certifications" role="group" aria-label="Tanúsítványok">
+              <button 
+                type="button"
                 className="footer__certification-item"
                 onClick={() => handleCertClick("/pictures/kissmate-tanusitvany1.jpg")}
+                aria-label="Masszázs terapeuta tanúsítvány 1 megnyitása"
               >
                 <img
                   src="/pictures/kissmate-tanusitvany1.jpg"
                   alt="Masszázs terapeuta tanúsítvány 1"
                   className="footer__certification-image"
                 />
-              </div>
-              <div 
+              </button>
+              <button 
+                type="button"
                 className="footer__certification-item"
                 onClick={() => handleCertClick("/pictures/kissmate-tanusitvany2.jpg")}
+                aria-label="Masszázs terapeuta tanúsítvány 2 megnyitása"
               >
                 <img
                   src="/pictures/kissmate-tanusitvany2.jpg"
                   alt="Masszázs terapeuta tanúsítvány 2"
                   className="footer__certification-image"
                 />
-              </div>
+              </button>
             </div>
           </div>
 
           {/* Navigation */}
-          <nav className="footer__nav">
-            <a href="/" className="footer__nav-link">Kezdőlap</a>
-            <a href="/services" className="footer__nav-link">Szolgáltatások</a>
-            <a href="/prices" className="footer__nav-link">Árak</a>
-            <a href="/contact" className="footer__nav-link">Kapcsolat</a>
+          <nav className="footer__nav" aria-label="Lábléc navigáció">
+            <Link to="/" className="footer__nav-link">Kezdőlap</Link>
+            <Link to="/services" className="footer__nav-link">Szolgáltatások</Link>
+            <Link to="/prices" className="footer__nav-link">Árak</Link>
+            <Link to="/contact" className="footer__nav-link">Kapcsolat</Link>
           </nav>
         </div>
 
@@ -89,6 +114,9 @@ const Footer = () => {
       {/* Certification Modal */}
       {selectedCert && (
         <div 
+          role="dialog"
+          aria-modal="true"
+          aria-label="Tanúsítvány megtekintése"
           style={{
             position: 'fixed',
             top: 0,
@@ -103,6 +131,9 @@ const Footer = () => {
             cursor: 'pointer'
           }}
           onClick={handleCloseModal}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") handleCloseModal();
+          }}
         >
           <div 
             style={{
@@ -118,6 +149,9 @@ const Footer = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              type="button"
+              aria-label="Bezárás"
+              autoFocus
               style={{
                 position: 'absolute',
                 top: '15px',
@@ -148,11 +182,11 @@ const Footer = () => {
                 e.currentTarget.style.transform = 'scale(1)';
               }}
             >
-              ×
+              <span aria-hidden="true">×</span>
             </button>
             <img 
               src={selectedCert} 
-              alt="Tanúsítvány" 
+              alt="Tanúsítvány nagyított nézet" 
               style={{
                 maxWidth: '100%',
                 maxHeight: '90vh',

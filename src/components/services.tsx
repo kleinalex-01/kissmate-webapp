@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { HexagonBackground } from "./HexagonBackground";
 import { FaSpa, FaRunning, FaBone, FaPhone } from "react-icons/fa";
+import { useSEO } from "../hooks/useDocumentTitle";
 
 interface ServiceCard {
   id: number;
@@ -47,6 +48,11 @@ const servicesData: ServiceCard[] = [
 ];
 
 const Services = () => {
+  useSEO({
+    title: 'Szolgáltatások',
+    description: 'Professzionális masszázs szolgáltatások Budapesten: svéd masszázs, sportmasszázs, hamarosan frissítő és wellness masszázs. Testre szabott kezelések az Ön igényei szerint.'
+  });
+  
   return (
     <div className="services">
       <HexagonBackground fixed={false} />
@@ -113,7 +119,7 @@ const Services = () => {
               </div>
 
               {!service.comingSoon && (
-                <a href="tel:+36301234567" className="services__card-cta">
+                <a href="tel:+36303517803" className="services__card-cta">
                   <FaPhone className="services__card-cta-icon" />
                   <span>Időpontfoglalás</span>
                 </a>

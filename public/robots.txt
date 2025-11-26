@@ -1,0 +1,9 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://kissmate-masszazs.hu/sitemap.xml
+
+# Disallow admin or private paths (none currently)
+# Disallow: /admin/
