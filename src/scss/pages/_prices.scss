@@ -602,3 +602,55 @@
     @include font-size('xs');
   }
 }
+
+// ==========================================================================
+// ACCESSIBILITY: Semantic element resets & reduced motion
+// ==========================================================================
+
+// Reset dl/dt/dd styles for definition lists
+.prices__card-prices,
+.prices__card-memberships,
+.prices__callout-fees {
+  margin: 0;
+  padding: 0;
+}
+
+.prices__card-price-row dt,
+.prices__card-price-row dd,
+.prices__card-membership dt,
+.prices__card-membership dd,
+.prices__callout-fee dt,
+.prices__callout-fee dd {
+  margin: 0;
+  padding: 0;
+}
+
+// H3 in section headers - reset and style
+.prices__card-section-header h3 {
+  @include font-size('sm');
+  @include font-weight('semibold');
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+
+  @include respond-below('mobile-l') {
+    @include font-size('xs');
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .prices__card,
+  .prices__callout,
+  .prices__callout-fee,
+  .prices__callout-price,
+  .prices__card-icon-wrapper {
+    transition: none;
+  }
+  
+  .prices__card:hover,
+  .prices__callout:hover {
+    transform: none;
+  }
+}

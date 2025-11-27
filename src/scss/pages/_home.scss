@@ -1510,3 +1510,36 @@
         transform: scale(1);
     }
 }
+
+// Accessibility: Reduce motion for users who prefer it
+@media (prefers-reduced-motion: reduce) {
+    .home__hero-icon {
+        animation: none;
+        
+        &:hover {
+            transform: scale(1.1); // Subtle hover without movement
+        }
+    }
+
+    .home__benefit-card {
+        transition: none;
+        opacity: 1 !important;
+        transform: none !important;
+        
+        &.reveal {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .home__floating-cta-icon {
+        animation: none;
+    }
+
+    .home__service-card,
+    .home__about,
+    .home__benefits,
+    .home__hero {
+        transition: none;
+    }
+}

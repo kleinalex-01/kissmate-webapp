@@ -603,3 +603,52 @@
     border-top-color: rgba(var(--gold-500-rgb), 0.4);
   }
 }
+
+// ==========================================================================
+// ACCESSIBILITY: Semantic element resets & reduced motion
+// ==========================================================================
+
+// Reset ul styles for benefits list
+.services__card-benefits {
+  list-style: none;
+  margin: 1rem;
+  padding: 0;
+}
+
+// Reset dl/dt/dd styles for info section
+.services__card-info {
+  margin: 0;
+}
+
+.services__card-info dt,
+.services__card-info dd {
+  margin: 0;
+  padding: 0;
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .services__card,
+  .services__card-icon-wrapper,
+  .services__card-icon,
+  .services__card-title,
+  .services__card-benefit,
+  .services__card-divider,
+  .services__card-cta,
+  .services__title,
+  .services__subtitle {
+    transition: none;
+  }
+  
+  .services__card:hover {
+    transform: none;
+  }
+  
+  .services__card:hover .services__card-icon-wrapper {
+    transform: none;
+  }
+  
+  .services__card:hover .services__card-icon {
+    transform: none;
+  }
+}
