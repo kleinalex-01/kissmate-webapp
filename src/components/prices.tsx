@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { HexagonBackground } from "./HexagonBackground";
-import { FaSpa, FaRunning, FaBone, FaClock, FaTicketAlt, FaCar, FaHandPaper } from "react-icons/fa";
+import { FaSpa, FaRunning, FaBone, FaClock, FaTicketAlt, FaCar } from "react-icons/fa";
 import { useSEO } from "../hooks/useDocumentTitle";
 
 interface PriceOption {
@@ -22,7 +22,6 @@ interface PriceCard {
   title: string;
   icon: React.ReactNode;
   prices: PriceOption[];
-  detailedPrices?: PriceOption[];
   memberships?: MembershipOption[];
   note?: string;
   comingSoon?: boolean;
@@ -45,18 +44,12 @@ const pricesData: PriceCard[] = [
     title: "Svéd Masszázs",
     icon: <FaSpa aria-hidden="true" />,
     prices: [
-      { duration: "30 perc", price: "6.500 Ft", priceValue: 6500 },
-      { duration: "50 perc", price: "10.000 Ft", priceValue: 10000 }
-    ],
-    detailedPrices: [
-      { duration: "80 perc", price: "13.500 Ft", priceValue: 13500, label: "Egész test" },
-      { duration: "50 perc", price: "9.000 Ft", priceValue: 9000, label: "Teljes hát" },
-      { duration: "50 perc", price: "9.000 Ft", priceValue: 9000, label: "Teljes láb" },
-      { duration: "30 perc", price: "6.500 Ft", priceValue: 6500, label: "Trapéz / Vádli / Váll / Kar" }
+      { duration: "30 perc (Kisebb testrészek)", price: "6.500 Ft", priceValue: 6500 },
+      { duration: "50 perc (Teljes hát)", price: "10.000 Ft", priceValue: 10000 }
     ],
     memberships: [
-      { sessions: "5 alkalom (5 óra)", price: "55.000 Ft", priceValue: 55000, savings: "5.000 Ft megtakarítás" },
-      { sessions: "10 alkalom (10 óra)", price: "100.000 Ft", priceValue: 100000, savings: "10.000 Ft megtakarítás" }
+      { sessions: "5 alkalom (5 óra)", price: "55.000 Ft", priceValue: 55000, savings: "Kedvezményes órabér" },
+      { sessions: "10 alkalom (10 óra)", price: "100.000 Ft", priceValue: 100000, savings: "Kedvezményes órabér" }
     ]
   },
   {
@@ -67,8 +60,8 @@ const pricesData: PriceCard[] = [
       { duration: "40-80 perc", price: "9.000-18.000 Ft", priceValue: 9000 }
     ],
     memberships: [
-      { sessions: "5 alkalom (5 óra)", price: "62.500 Ft", priceValue: 62500, savings: "7.500 Ft megtakarítás" },
-      { sessions: "10 alkalom (10 óra)", price: "115.000 Ft", priceValue: 115000, savings: "15.000 Ft megtakarítás" }
+      { sessions: "5 alkalom (5 óra)", price: "62.500 Ft", priceValue: 62500, savings: "Kedvezményes órabér" },
+      { sessions: "10 alkalom (10 óra)", price: "115.000 Ft", priceValue: 115000, savings: "Kedvezményes órabér" }
     ],
     note: "Az időtartam egyéni felmérés alapján alakul"
   },
@@ -78,7 +71,7 @@ const pricesData: PriceCard[] = [
     icon: <FaBone aria-hidden="true" />,
     prices: [],
     comingSoon: true,
-    comingSoonDate: "2026. Január"
+    comingSoonDate: "2026"
   }
 ];
 
@@ -198,29 +191,6 @@ const Prices = () => {
                       ))}
                     </dl>
                   </section>
-
-                  {/* Detailed body part prices */}
-                  {service.detailedPrices && (
-                    <section className="prices__card-section prices__card-section--detailed" aria-labelledby={`detailed-prices-${service.id}`}>
-                      <div className="prices__card-section-header">
-                        <FaHandPaper className="prices__card-section-icon" aria-hidden="true" />
-                        <h3 id={`detailed-prices-${service.id}`}>Testrész szerinti árak</h3>
-                      </div>
-                      <dl className="prices__card-prices">
-                        {service.detailedPrices.map((option, idx) => (
-                          <div key={idx} className="prices__card-price-row prices__card-price-row--detailed">
-                            <dt className="prices__card-price-info">
-                              {option.label && (
-                                <span className="prices__card-label">{option.label}</span>
-                              )}
-                              <span className="prices__card-duration">{option.duration}</span>
-                            </dt>
-                            <dd className="prices__card-price">{option.price}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    </section>
-                  )}
 
                   {/* Membership prices */}
                   {service.memberships && (
