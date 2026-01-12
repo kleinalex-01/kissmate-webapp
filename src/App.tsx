@@ -4,6 +4,7 @@ import Home from './components/home'
 import Services from './components/services'
 import Prices from './components/prices'
 import Contact from './components/contact'
+import NotFound from './components/NotFound'
 import './App.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="services" element={<Services />} />
         <Route path="prices" element={<Prices />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   )

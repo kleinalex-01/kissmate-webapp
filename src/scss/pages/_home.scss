@@ -333,8 +333,27 @@
     .home__header-left {
         @include flex($align: center);
         gap: spacing(4);
+        transition: map-get($transitions, 'all');
+        
+        @include respond-below('tablet') {
+            gap: spacing(3);
+        }
+        
+        @include respond-below('mobile-l') {
+            gap: spacing(2);
+        }
+        
+        @include respond-below('mobile-m') {
+            gap: spacing(2);
+        }
+    }
+
+    .home__header-logo-link {
+        @include flex($align: center);
+        gap: spacing(4);
         cursor: pointer;
         transition: map-get($transitions, 'all');
+        text-decoration: none;
         
         // Subtle hover effect on entire left section
         &:hover {
@@ -361,6 +380,7 @@
             gap: spacing(2);
         }
     }
+
 
     .home__header-image {
         @include size(60px, 60px);
@@ -754,6 +774,9 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: spacing(6);
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
     @include respond-below('laptop') {
         gap: spacing(5);

@@ -29,8 +29,8 @@ const validatePhone = (phone: string): boolean => {
 
 const Contact = () => {
   useSEO({
-    title: 'Kapcsolat',
-    description: 'Vegye fel a kapcsolatot Kiss Máté masszázsterapeutával Budapesten. Időpontfoglalás telefonon: 06 30 351 7803 vagy email: kmmasszazs@gmail.com'
+    title: 'Kapcsolat felvétel | Kiss Máté Masszázsterapeuta',
+    description: 'Vegye fel a kapcsolatot Kiss Máté masszázsterapeutával Budapesten és környékén. Időpontfoglalás telefonon: 06 30 351 7803 vagy email: kmmasszazs@gmail.com'
   });
   const [formData, setFormData] = useState({
     name: "",

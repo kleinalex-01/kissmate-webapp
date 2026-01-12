@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import Footer from './footer'
 import Navbar from './Navbar'
+import PWAPrompt from './PWAPrompt'
 
 const Layout = () => {
   return (
@@ -9,6 +10,7 @@ const Layout = () => {
       <main className="flex-1">
         <Outlet />
       </main>
+      <PWAPrompt />
       <Footer />
     </div>
   )

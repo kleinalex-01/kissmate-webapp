@@ -10,7 +10,7 @@ const structuredData = {
     "@type": "Person",
     "name": "Kiss Máté",
     "jobTitle": "Masszázsterapeuta",
-    "description": "Minősített masszőr Budapesten. Professzionális svéd masszázs és sportmasszázs kiszállással.",
+    "description": "Minősített masszőr Budapesten és környékén. Professzionális svéd masszázs és sportmasszázs kiszállással.",
     "url": "https://kissmate-masszazs.hu",
     "telephone": "+36303517803",
     "email": "kmmasszazs@gmail.com",
@@ -19,9 +19,19 @@ const structuredData = {
         "addressLocality": "Budapest",
         "addressCountry": "HU"
     },
+    "areaServed": [
+        {
+            "@type": "City",
+            "name": "Budapest"
+        },
+        {
+            "@type": "AdministrativeArea",
+            "name": "Budapest agglomeráció"
+        }
+    ],
     "image": "https://kissmate-masszazs.hu/pictures/kissmate-profilkep.JPG",
     "sameAs": [],
-    "knowsAbout": ["Svéd masszázs", "Sportmasszázs", "Relaxációs masszázs"],
+    "knowsAbout": ["Svéd masszázs", "Sportmasszázs", "Relaxációs masszázs", "Gyógymasszázs"],
     "makesOffer": [
         {
             "@type": "Offer",
@@ -48,8 +58,8 @@ const structuredData = {
 
 const Home = () => {
     useSEO({
-        title: "Bemutatozás",
-        description: "Kiss Máté masszázsterapeuta Budapesten. Professzionális svéd masszázs és sportmasszázs kiszállással. Foglalj időpontot: 06 30 351 7803"
+        title: "Masszázsterapeuta Budapest és környékén | Kiss Máté",
+        description: "Kiss Máté masszázsterapeuta Budapesten és környékén. Professzionális svéd masszázs és sportmasszázs kiszállással. Foglalj időpontot: 06 30 351 7803"
     });
 
     const benefitsRef = useRef<HTMLUListElement>(null);
@@ -86,22 +96,34 @@ const Home = () => {
         return () => observer.disconnect();
     }, []);
 
-    // Floating CTA visibility observer
+    // Floating CTA visibility observer + scroll fallback
     useEffect(() => {
+        const updateVisibility = (isIntersecting = false, top = 0) => {
+            const scrolled = window.scrollY > 200;
+            // Show if section is visible, scrolled past it, or user scrolled down a bit
+            setShowFloatingCTA(isIntersecting || top < 0 || scrolled);
+        };
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    setShowFloatingCTA(entry.isIntersecting || entry.boundingClientRect.top < 0);
+                    updateVisibility(entry.isIntersecting, entry.boundingClientRect.top);
                 });
             },
-            { threshold: 0.5, rootMargin: '0px' }  // 50% visibility = middle of section
+            { threshold: 0.5, rootMargin: '0px' }
         );
+
+        const handleScroll = () => updateVisibility();
 
         if (benefitsSectionRef.current) {
             observer.observe(benefitsSectionRef.current);
         }
 
-        return () => observer.disconnect();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     return (
@@ -395,16 +417,15 @@ const Home = () => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                                 role="listitem"
-                                aria-labelledby="home-service-csont"
+                                aria-labelledby="home-service-gyogymasszazs"
                             >
                                 <div className="home__service-badge" role="status" aria-label="Hamarosan elérhető">Hamarosan</div>
                                 <div className="home__service-icon" aria-hidden="true">
-                                    <FaShieldAlt />
+                                    <FaHeartbeat />
                                 </div>
-                                <h3 id="home-service-csont" className="home__service-title">Csontkovácsolás</h3>
+                                <h3 id="home-service-gyogymasszazs" className="home__service-title">Gyógymasszázs</h3>
                                 <p className="home__service-description">
-                                    Hagyományos csontkovácsolási technikák az ízületek és a gerinc 
-                                    egészségéért. Jelenleg képzés alatt – hamarosan elérhető!
+                                    Orvosi terápiát kiegészítő, célzott gyógymasszázs a regenerációért és a fájdalom csökkentéséért.
                                 </p>
                                 <div className="home__service-features">
                                     <span className="home__service-feature">Képzés alatt</span>

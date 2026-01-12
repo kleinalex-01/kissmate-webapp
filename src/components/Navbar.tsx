@@ -53,21 +53,23 @@ const Navbar = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             >
-                <img 
-                    src="/pictures/kissmate-profilkep.JPG" 
-                    alt="Kiss Máté" 
-                    className="home__header-image"
-                />
-                <div className="home__header-name-container">
-                    <h1 className="home__header-name">
-                        Kiss Máté
-                        <span className="home__header-title-separator"> - </span>
-                        <span className="home__header-typewriter-title" aria-label="Masszőr, Sportmasszőr">
-                            <span aria-hidden="true">{displayText}</span>
-                            <span className="home__header-typewriter-cursor" aria-hidden="true">|</span>
-                        </span>
-                    </h1>
-                </div>
+                <Link to="/" className="home__header-logo-link">
+                    <img 
+                        src="/pictures/kissmate-profilkep.JPG" 
+                        alt="Kiss Máté" 
+                        className="home__header-image"
+                    />
+                    <div className="home__header-name-container">
+                        <h1 className="home__header-name">
+                            Kiss Máté
+                            <span className="home__header-title-separator"> - </span>
+                            <span className="home__header-typewriter-title" aria-label="Masszőr, Sportmasszőr">
+                                <span aria-hidden="true">{displayText}</span>
+                                <span className="home__header-typewriter-cursor" aria-hidden="true">|</span>
+                            </span>
+                        </h1>
+                    </div>
+                </Link>
             </motion.div>
 
             {/* Right side: Navigation Icons/Links */}

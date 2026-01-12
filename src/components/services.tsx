@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { HexagonBackground } from "./HexagonBackground";
-import { FaSpa, FaRunning, FaBone, FaPhone } from "react-icons/fa";
+import { FaSpa, FaRunning, FaHeartbeat, FaPhone } from "react-icons/fa";
 import { useSEO } from "../hooks/useDocumentTitle";
 
 interface ServiceCard {
@@ -40,11 +40,11 @@ const servicesData: ServiceCard[] = [
   },
   {
     id: 3,
-    title: "Csontkovácsolás",
-    icon: <FaBone aria-hidden="true" />,
-    benefits: ["Ízületek", "Gerinc", "Mobilitás", "Fájdalomcsillapítás"],
-    description: "Hagyományos magyar csontkovácsolási technikák az ízületek és a gerinc egészségéért. Segít helyreállítani a test egyensúlyát.",
-    duration: "Egyéni",
+    title: "Gyógymasszázs",
+    icon: <FaHeartbeat aria-hidden="true" />,
+    benefits: ["Rehabilitáció", "Fájdalomcsökkentés", "Keringés", "Stresszoldás"],
+    description: "Orvosi terápiát kiegészítő, célzott gyógymasszázs a regeneráció és a panaszok csökkentése érdekében.",
+    duration: "40-60 perc",
     priceFrom: "Hamarosan",
     comingSoon: true
   }
@@ -64,10 +64,16 @@ const generateStructuredData = () => {
         "name": "Kiss Máté",
         "jobTitle": "Masszázsterapeuta"
       },
-      "areaServed": {
-        "@type": "City",
-        "name": "Budapest"
-      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Budapest"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Budapest agglomeráció"
+        }
+      ],
       ...(service.priceValue && {
         "offers": {
           "@type": "Offer",
@@ -84,16 +90,16 @@ const generateStructuredData = () => {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Masszázs szolgáltatások Budapesten",
-    "description": "Kiss Máté masszázsterapeuta szolgáltatásai",
+    "name": "Masszázs szolgáltatások Budapest és környékén",
+    "description": "Kiss Máté masszázsterapeuta professzionális szolgáltatásai Budapesten és környékén",
     "itemListElement": services
   };
 };
 
 const Services = () => {
   useSEO({
-    title: 'Szolgáltatások',
-    description: 'Professzionális masszázs szolgáltatások Budapesten: svéd masszázs, sportmasszázs, hamarosan frissítő és wellness masszázs. Testre szabott kezelések az Ön igényei szerint.'
+    title: 'Masszázs szolgáltatások Budapest és környékén | Kiss Máté',
+    description: 'Professzionális masszázs szolgáltatások Budapesten és környékén: svéd masszázs, sportmasszázs, gyógymasszázs. Minősített terapeuta, kiszállás rendelkezésre.'
   });
 
   const structuredData = generateStructuredData();

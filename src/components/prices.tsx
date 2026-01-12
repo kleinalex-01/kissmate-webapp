@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { HexagonBackground } from "./HexagonBackground";
-import { FaSpa, FaRunning, FaBone, FaClock, FaTicketAlt, FaCar } from "react-icons/fa";
+import { FaSpa, FaRunning, FaHeartbeat, FaClock, FaTicketAlt, FaCar } from "react-icons/fa";
 import { useSEO } from "../hooks/useDocumentTitle";
 
 interface PriceOption {
@@ -67,11 +67,11 @@ const pricesData: PriceCard[] = [
   },
   {
     id: 3,
-    title: "Csontkovácsolás",
-    icon: <FaBone aria-hidden="true" />,
+    title: "Gyógymasszázs",
+    icon: <FaHeartbeat aria-hidden="true" />,
     prices: [],
     comingSoon: true,
-    comingSoonDate: "2026"
+    comingSoonDate: "Hamarosan"
   }
 ];
 
@@ -85,12 +85,23 @@ const generateStructuredData = () => {
       "provider": {
         "@type": "Person",
         "name": "Kiss Máté",
-        "jobTitle": "Masszázsterapeuta"
+        "jobTitle": "Masszázsterapeuta",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Budapest",
+          "addressCountry": "HU"
+        }
       },
-      "areaServed": {
-        "@type": "City",
-        "name": "Budapest"
-      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Budapest"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Budapest agglomeráció"
+        }
+      ],
       "offers": service.prices.map(price => ({
         "@type": "Offer",
         "name": price.label || price.duration,
@@ -103,8 +114,8 @@ const generateStructuredData = () => {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Masszázs szolgáltatások és árak",
-    "description": "Kiss Máté masszázsterapeuta szolgáltatásainak árai Budapesten",
+    "name": "Masszázs szolgáltatások és árak Budapest és környékén",
+    "description": "Kiss Máté masszázsterapeuta árlista Budapesten és a környező településeken. Svéd masszázs, sportmasszázs, kiszállási díjak.",
     "itemListElement": services.map((service, index) => ({
       "@type": "ListItem",
       "position": index + 1,
@@ -115,8 +126,8 @@ const generateStructuredData = () => {
 
 const Prices = () => {
   useSEO({
-    title: 'Árak',
-    description: 'Masszázs árak és bérletek Budapesten. Svéd masszázs, sportmasszázs árak, testrész szerinti árazás és előnyös bérletlehetőségek. Kiszállási díj információk.'
+    title: 'Masszázs árak Budapest és környékén | Kiss Máté',
+    description: 'Masszázs árak és bérletek Budapesten és környékén. Svéd masszázs, sportmasszázs árak, bérletlehetőségek, kiszállási díjak. Professzionális terapeuta.'
   });
 
   const structuredData = generateStructuredData();
@@ -137,9 +148,9 @@ const Prices = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h1 className="prices__title">Árak</h1>
+          <h1 className="prices__title">Masszázs árak</h1>
           <p className="prices__subtitle">
-            Átlátható árazás, prémium minőségű szolgáltatás
+            Átlátható árazás, prémium minőségű szolgáltatás Budapesten és környékén
           </p>
         </motion.header>
 
@@ -245,7 +256,7 @@ const Prices = () => {
             ))}
           </dl>
           <p className="prices__callout-note">
-            A kiszállási díj a masszázs árához adódik hozzá a távolság függvényében.
+            A kiszállási díj a masszázs árához adódik hozzá a távolság függvényében. Szolgáltatásom Budapest és a környező települések (agglomeráció) lakóinak áll rendelkezésére.
           </p>
         </motion.section>
       </div>
